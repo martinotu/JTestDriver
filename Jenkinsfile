@@ -21,31 +21,31 @@ stage('Build') {
         echo "package archived to S3"
       }
       stage('INT deploy'){
-        sh "sleep(5)"
+        sh "sleep 5s"
         echo "Deployed to INT"
       }
       stage('Acceptance Tests') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
-            sh "sleep(5)"  
+            sh "sleep 5s"  
             echo "PR Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("feature/")) {
-            sh "sleep(10)"  
+            sh "sleep 10s"  
             echo "Feature Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("master")) {
-          sh "sleep(15)"  
+          sh "sleep 15s"  
           echo "Acceptance Tests set"
           }
       }
     }
     milestone()
      stage('QA deploy'){
-       sh "sleep(5)" 
+       sh "sleep 5s" 
        echo "Deployed to QA"
       }
      stage('QA Acceptace&Regression test'){
-       sh "sleep(20)" 
+       sh "sleep 20s" 
        echo "Acceptance Tests"
       }
   }
