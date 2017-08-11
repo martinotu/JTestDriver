@@ -3,7 +3,7 @@ stage('Build') {
   milestone()
   node {
     echo "Building"
-    sh "sleep(10)"
+    sh "sleep 10s"
   }
 }
 
