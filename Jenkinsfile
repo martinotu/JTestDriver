@@ -16,7 +16,13 @@ stage('Build') {
       stage('Unit Tests') {
         echo "Unit Tests"
       }
-      stage('System Tests') {
+      stage('Archiving package'){
+        echo "package archived to S3"
+      }
+      stage('INT deploy'){
+        echo "Deployed to INT"
+      }
+      stage('Acceptance Tests') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
             echo "PR Tests"
           }
@@ -29,13 +35,19 @@ stage('Build') {
       }
     }
     milestone()
+     stage('QA deploy'){
+        echo "Deployed to QA"
+      }
+     stage('QA Acceptace&Regression test'){
+        echo "Deployed to QA"
+      }
   }
 
 // The Deploy stage does not limit concurrency but requires manual input
 // from a user. Several builds might reach this step waiting for input.
 // When a user promotes a specific build all preceding builds are aborted,
 // ensuring that the latest code is always deployed.
-stage('Deploy') {
+stage('PROD deploy') {
   if (env.BRANCH_NAME.startsWith("master")) {
             input "Deploy?"
             milestone()
