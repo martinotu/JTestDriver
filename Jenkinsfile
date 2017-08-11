@@ -18,9 +18,12 @@ stage('Build') {
       }
       stage('System Tests') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
-            echo "Skip System Tests"
+            echo "PR Tests"
           }
-        else {
+        else if (env.BRANCH_NAME.startsWith("feature/")) {
+            echo "Feature Tests"
+          }
+        else if (env.BRANCH_NAME.startsWith("master")) {
             echo "System Tests"
           }
       }
@@ -33,9 +36,12 @@ stage('Build') {
 // When a user promotes a specific build all preceding builds are aborted,
 // ensuring that the latest code is always deployed.
 stage('Deploy') {
-  input "Deploy?"
-  milestone()
-  node {
-    echo "Deployingg"
-  }
+  if (env.BRANCH_NAME.startsWith("master")) {
+            input "Deploy?"
+            milestone()
+            node {
+              echo "Deployingg"
+            }
+      }
+
 }
