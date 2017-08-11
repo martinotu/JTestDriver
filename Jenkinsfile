@@ -43,14 +43,18 @@ stage('Build') {
     }
      
 stage('QA deploy'){
-       sh "sleep 5s" 
-       echo "Deployed to QA"
-      }
+  node{
+    sh "sleep 5s" 
+    echo "Deployed to QA"
+  }  
+}
      
 stage('QA Acceptace&Regression test'){
-       sh "sleep 20s" 
-       echo "Acceptance Tests"
-      }
+  node{
+    sh "sleep 20s" 
+    echo "Acceptance Tests"
+  }
+}
   
 
 // The Deploy stage does not limit concurrency but requires manual input
