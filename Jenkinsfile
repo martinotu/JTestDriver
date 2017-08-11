@@ -17,8 +17,10 @@ lock(resource: 'myResource', inversePrecedence: true){
       echo "Unit Tests"
     }
     stage('System Tests') {
+      if (env.BRANCH_NAME.startsWith("PR-")) {
+          echo "Skip System Tests"
+      }
       echo "System Tests"
-    }
   }
   milestone()
 }
