@@ -31,6 +31,6 @@ stage('Deploy') {
   input "Deploy?"
   milestone()
   node {
-    echo "Deploying"
+    echo "Deployingg"
   }
 }
