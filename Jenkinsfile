@@ -11,17 +11,19 @@ stage('Build') {
 // Newer builds are pulled off the queue first. When a build reaches the
 // milestone at the end of the lock, all jobs started prior to the current
 // build that are still waiting for the lock will be aborted
-lock(resource: 'myResource', inversePrecedence: true){
-  node() {
-    stage('Unit Tests') {
-      echo "Unit Tests"
+  lock(resource: 'myResource', inversePrecedence: true){
+    node() {
+      stage('Unit Tests') {
+        echo "Unit Tests"
+      }
+      stage('System Tests') {
+        if (env.BRANCH_NAME.startsWith("PR-")) {
+            echo "Skip System Tests"
+          }
+      }
     }
-    stage('System Tests') {
-      echo "System Tests"
-    }
+    milestone()
   }
-  milestone()
-}
 
 // The Deploy stage does not limit concurrency but requires manual input
 // from a user. Several builds might reach this step waiting for input.
@@ -31,6 +33,6 @@ stage('Deploy') {
   input "Deploy?"
   milestone()
   node {
-    echo "Deploying"
+    echo "Deployingg"
   }
 }
