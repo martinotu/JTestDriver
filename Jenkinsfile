@@ -18,9 +18,12 @@ stage('Build') {
       }
       stage('System Tests') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
-            echo "Skip System Tests"
+            echo "PR Tests"
           }
-        else {
+        else if (env.BRANCH_NAME.startsWith("feature/")) {
+            echo "Feature Tests"
+          }
+        else if (env.BRANCH_NAME.startsWith("master")) {
             echo "System Tests"
           }
       }
