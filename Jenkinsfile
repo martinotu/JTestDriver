@@ -20,6 +20,9 @@ stage('Build') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
             echo "Skip System Tests"
           }
+        else {
+            echo "System Tests"
+          }
       }
     }
     milestone()
