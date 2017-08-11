@@ -24,13 +24,13 @@ stage('Build') {
       }
       stage('Acceptance Tests') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
-            echo "PR Tests"
+            echo "PR Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("feature/")) {
-            echo "Feature Tests"
+            echo "Feature Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("master")) {
-            echo "System Tests"
+            echo "Acceptance Tests set"
           }
       }
     }
