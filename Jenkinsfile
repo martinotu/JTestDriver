@@ -3,6 +3,7 @@ stage('Build') {
   milestone()
   node {
     echo "Building"
+    sh "sleep 10s"
   }
 }
 
@@ -20,28 +21,41 @@ stage('Build') {
         echo "package archived to S3"
       }
       stage('INT deploy'){
+        sh "sleep 5s"
         echo "Deployed to INT"
       }
       stage('Acceptance Tests') {
         if (env.BRANCH_NAME.startsWith("PR-")) {
+            sh "sleep 5s"  
             echo "PR Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("feature/")) {
+            sh "sleep 10s"  
             echo "Feature Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("master")) {
-            echo "Acceptance Tests set"
+          sh "sleep 15s"  
+          echo "Acceptance Tests set"
           }
       }
     }
     milestone()
-     stage('QA deploy'){
-        echo "Deployed to QA"
-      }
-     stage('QA Acceptace&Regression test'){
-        echo "Deployed to QA"
-      }
+    }
+     
+stage('QA deploy'){
+  node{
+    sh "sleep 5s" 
+    echo "Deployed to QA"
+  }  
+}
+     
+stage('QA Acceptace&Regression test'){
+  node{
+    sh "sleep 20s" 
+    echo "Acceptance Tests"
   }
+}
+  
 
 // The Deploy stage does not limit concurrency but requires manual input
 // from a user. Several builds might reach this step waiting for input.
