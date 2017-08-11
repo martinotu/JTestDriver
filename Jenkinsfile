@@ -40,15 +40,18 @@ stage('Build') {
       }
     }
     milestone()
-     stage('QA deploy'){
+    }
+     
+stage('QA deploy'){
        sh "sleep 5s" 
        echo "Deployed to QA"
       }
-     stage('QA Acceptace&Regression test'){
+     
+stage('QA Acceptace&Regression test'){
        sh "sleep 20s" 
        echo "Acceptance Tests"
       }
-  }
+  
 
 // The Deploy stage does not limit concurrency but requires manual input
 // from a user. Several builds might reach this step waiting for input.
