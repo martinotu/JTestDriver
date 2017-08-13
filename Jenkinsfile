@@ -77,7 +77,7 @@ stage('PROD deploy') {
             input "Deploy?"
             milestone()
             node {
-              echo "Deployingg"
+              echo "Deploying"
             }
       }
 }
