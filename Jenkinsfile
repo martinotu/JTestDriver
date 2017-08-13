@@ -68,7 +68,6 @@ stage('QA Acceptace&Regression test'){
   }
 }
   
-
 // The Deploy stage does not limit concurrency but requires manual input
 // from a user. Several builds might reach this step waiting for input.
 // When a user promotes a specific build all preceding builds are aborted,
