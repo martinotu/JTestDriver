@@ -12,8 +12,6 @@ stage('Config'){
 
 stage('Build') {
   // The first milestone step starts tracking concurrent build order
-
-  
   milestone()
   node {
     echo "Building"
