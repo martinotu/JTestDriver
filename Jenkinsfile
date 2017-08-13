@@ -1,10 +1,11 @@
 stage('Build') {
   // The first milestone step starts tracking concurrent build order
-  version = "1.0.' + env.BUILD_NUMBER
-  currentBuild.displayName = version
+
   
   milestone()
   node {
+    version = "1.0.' + env.BUILD_NUMBER
+    currentBuild.displayName = version
     echo "Building"
     sh "sleep 10s"
   }
