@@ -4,7 +4,7 @@ stage('Build') {
   
   milestone()
   node {
-    version = "1.0.' + env.BUILD_NUMBER
+    version = '1.0.' + env.BUILD_NUMBER
     currentBuild.displayName = version
     echo "Building"
     sh "sleep 10s"
