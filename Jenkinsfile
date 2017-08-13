@@ -1,7 +1,14 @@
 stage('Config'){
   node{
+    if (env.BRANCH_NAME.startsWith("PR-")) {
+      version = '0.' + env.BUILD_NUMBER
+    }
+    else{
+      
+    
     version = '1.0.' + env.BUILD_NUMBER
     currentBuild.displayName = version
+    }
   }
 }
 
