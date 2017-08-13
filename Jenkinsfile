@@ -43,11 +43,11 @@ stage('Build') {
           }
         else if (env.BRANCH_NAME.startsWith("feature/")) {
             sh "sleep 10s"  
-            echo "Feature Tests set"
+            echo "feature Tests set"
           }
         else if (env.BRANCH_NAME.startsWith("master")) {
           sh "sleep 15s"  
-          echo "Acceptance Tests set"
+          echo "master Tests set"
           }
       }
     }
