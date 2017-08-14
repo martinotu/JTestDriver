@@ -19,7 +19,6 @@ stage('Build') {
     echo "Unit Tests"
     
   }
-}
 
 // This locked resource contains both Test stages as a single concurrency Unit.
 // Only 1 concurrent build is allowed to utilize the test resources at a time.
