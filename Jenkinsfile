@@ -8,17 +8,17 @@ stage('Build') {
     version = '1.0.' + env.BUILD_NUMBER
     currentBuild.displayName = version
     }
+  
+    // The first milestone step starts tracking concurrent build order
+    milestone()
+    node {
+      echo "Building"
+      sh "sleep 10s"
+      echo "Unit Tests"   
+    }
+  
   }
 
-
-  // The first milestone step starts tracking concurrent build order
-  milestone()
-  node {
-    echo "Building"
-    sh "sleep 10s"
-    echo "Unit Tests"
-    
-  }
 
 // This locked resource contains both Test stages as a single concurrency Unit.
 // Only 1 concurrent build is allowed to utilize the test resources at a time.
